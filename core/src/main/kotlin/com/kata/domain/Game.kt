@@ -12,7 +12,7 @@ class Game(val human: Human) {
         this.machineHealth -= cardValue
     }
 
-    fun dealInitialHand() {
+    fun start() {
         pickRandomCard()
         pickRandomCard()
         pickRandomCard()
@@ -28,7 +28,7 @@ class Game(val human: Human) {
         return humanHand
     }
 
-    fun generateStatus(): GameStatus {
+    fun getStatus(): GameStatus {
         return GameStatus(human.health, human.mana, humanHand(), desk.size)
     }
 }

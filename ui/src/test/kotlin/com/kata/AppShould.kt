@@ -66,6 +66,20 @@ class AppShould {
         verify { screen.printLine("Card 3: 2") }
     }
 
+
+    @Test
+    fun `ddddd`() {
+        val cards = listOf(5, 3, 2)
+        every { startGame.execute() } returns statusWith(cards = cards)
+
+        App(screen, keyboard, startGame).run()
+
+        verifyOrder {
+            screen.printLine("Select next card to play")
+
+        }
+    }
+
     private fun statusWith(
         initialHealth: Int = 30,
         initialMana: Int = 0,
