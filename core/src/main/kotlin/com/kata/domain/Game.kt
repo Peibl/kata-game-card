@@ -4,13 +4,12 @@ private const val initialHealth = 30
 
 class Game(humanMana: Int = 0) {
     private val human = Human(initialHealth, humanMana)
-    var machineHealth = initialHealth
-        private set
+    private var machineHealth = initialHealth
 
-    private var desk = mutableListOf(0, 0, 1, 1, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 5, 5, 6, 6, 7, 8)
+    private var deck = Deck()
 
     fun start() {
-        human.pickCards(desk)
+        human.pickCards(deck, 3)
     }
 
     fun playHumanTurn(cardValues: List<Int>) {
@@ -19,6 +18,7 @@ class Game(humanMana: Int = 0) {
 
     fun getStatus(): GameStatus {
         val humanStatus = human.getStatus()
-        return GameStatus(humanStatus.health, humanStatus.mana, humanStatus.hand, desk.size)
+        return GameStatus(humanStatus, deck.size(), machineHealth)
     }
 }
+

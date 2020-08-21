@@ -1,7 +1,6 @@
 package com.kata.useCases
 
 import com.kata.domain.Game
-import com.kata.domain.Human
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
@@ -12,7 +11,7 @@ internal class PlayTurnShould {
         val game = Game(6)
         PlayTurn(game).execute(listOf(5))
 
-        Assertions.assertThat(game.machineHealth).isEqualTo(25)
+        Assertions.assertThat(game.getStatus().machineHealth).isEqualTo(25)
     }
 
     @Test
@@ -20,7 +19,7 @@ internal class PlayTurnShould {
         val game = Game(6)
         PlayTurn(game).execute(listOf(2, 3))
 
-        Assertions.assertThat(game.machineHealth).isEqualTo(25)
+        Assertions.assertThat(game.getStatus().machineHealth).isEqualTo(25)
     }
 
     @Test

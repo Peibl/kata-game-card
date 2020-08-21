@@ -8,24 +8,24 @@ internal class StartGameShould {
     fun `return the health of the human player`() {
         val status = StartGame().execute()
 
-        Assertions.assertThat(status.health).isEqualTo(30)
+        Assertions.assertThat(status.human.health).isEqualTo(30)
     }
 
     @Test
     fun `return the mana of the human player`() {
         val status = StartGame().execute()
 
-        Assertions.assertThat(status.mana).isEqualTo(0)
+        Assertions.assertThat(status.human.mana).isEqualTo(0)
     }
 
     @Test
     fun `return the initial hand of the human player`() {
         val status = StartGame().execute()
 
-        Assertions.assertThat(status.cards.size).isEqualTo(3)
+        Assertions.assertThat(status.human.hand.size).isEqualTo(3)
     }
     @Test
-    fun `decrease the human desk in 3 cards`() {
+    fun `decrease the human deck in 3 cards`() {
         val status = StartGame().execute()
 
         Assertions.assertThat(status.remainingCards).isEqualTo(17)
