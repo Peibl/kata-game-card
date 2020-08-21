@@ -11,7 +11,7 @@ internal class PlayTurnShould {
         val game = Game(6)
         PlayTurn(game).execute(listOf(5))
 
-        Assertions.assertThat(game.getStatus().machineHealth).isEqualTo(25)
+        Assertions.assertThat(game.getStatus().machineStatus.health).isEqualTo(25)
     }
 
     @Test
@@ -19,7 +19,7 @@ internal class PlayTurnShould {
         val game = Game(6)
         PlayTurn(game).execute(listOf(2, 3))
 
-        Assertions.assertThat(game.getStatus().machineHealth).isEqualTo(25)
+        Assertions.assertThat(game.getStatus().machineStatus.health).isEqualTo(25)
     }
 
     @Test

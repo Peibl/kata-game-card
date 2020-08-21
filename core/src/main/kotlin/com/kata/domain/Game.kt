@@ -1,11 +1,8 @@
 package com.kata.domain
 
-private const val initialHealth = 30
-
 class Game(humanMana: Int = 0) {
-    private val human = Human(initialHealth, humanMana)
-    private var machineHealth = initialHealth
-
+    private val human = Human(humanMana)
+    private val machine = Machine()
     private var deck = Deck()
 
     fun start() {
@@ -13,12 +10,16 @@ class Game(humanMana: Int = 0) {
     }
 
     fun playHumanTurn(cardValues: List<Int>) {
-        this.machineHealth -= human.playCards(cardValues)
+        this.machine.reduceHealth(human.playCards(cardValues))
     }
 
     fun getStatus(): GameStatus {
         val humanStatus = human.getStatus()
-        return GameStatus(humanStatus, deck.size(), machineHealth)
+        val machineStatus = machine.getStatus()
+        return GameStatus(humanStatus, machineStatus, deck.size())
     }
 }
+
+
+
 

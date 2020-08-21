@@ -2,6 +2,7 @@ package com.kata
 
 import com.kata.domain.GameStatus
 import com.kata.domain.HumanStatus
+import com.kata.domain.MachineStatus
 import com.kata.ui.Screen
 import com.kata.useCases.StartGame
 import io.mockk.*
@@ -86,7 +87,8 @@ class AppShould {
         remainingCards: Int = 0
     ): GameStatus {
         val humanStatus = HumanStatus(initialHealth, initialMana, cards)
-        return GameStatus(humanStatus, remainingCards, 30)
+        val machineStatus = MachineStatus(initialHealth)
+        return GameStatus(humanStatus, machineStatus, remainingCards)
     }
 
     private val screen = mockk<Screen>(relaxed = true)
