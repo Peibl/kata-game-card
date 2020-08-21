@@ -1,34 +1,24 @@
 package com.kata.domain
 
-class Game(val human: Human) {
-    var machineHealth = 30
+private const val initialHealth = 30
+
+class Game(humanMana: Int = 0) {
+    private val human = Human(initialHealth, humanMana)
+    var machineHealth = initialHealth
         private set
-    var humanHand = mutableListOf<Int>()
-        private set
-    var desk = mutableListOf(0, 0, 1, 1, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 5, 5, 6, 6, 7, 8)
-        private set
-    fun playHumanTurn(cardValue: Int) {
-        if (this.human.mana < cardValue) throw Error()
-        this.machineHealth -= cardValue
-    }
+
+    private var desk = mutableListOf(0, 0, 1, 1, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 5, 5, 6, 6, 7, 8)
 
     fun start() {
-        pickRandomCard()
-        pickRandomCard()
-        pickRandomCard()
+        human.pickCards(desk)
     }
 
-    private fun pickRandomCard() {
-        val card = desk.random()
-        humanHand.add(card)
-        desk.remove(card)
-    }
-
-    fun humanHand(): List<Int> {
-        return humanHand
+    fun playHumanTurn(cardValues: List<Int>) {
+        this.machineHealth -= human.playCards(cardValues)
     }
 
     fun getStatus(): GameStatus {
-        return GameStatus(human.health, human.mana, humanHand(), desk.size)
+        val humanStatus = human.getStatus()
+        return GameStatus(humanStatus.health, humanStatus.mana, humanStatus.hand, desk.size)
     }
 }
