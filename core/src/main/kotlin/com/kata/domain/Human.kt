@@ -1,14 +1,13 @@
 package com.kata.domain
 
-class Human(val mana: Int) {
-    private var health = 30
+class Human(val mana: Int, val health: Int, private val deck: Deck) {
     private var hand = mutableListOf<Int>()
 
-    fun pickCards(desk: Deck, amount: Int) {
-        hand.addAll(desk.pickCards(amount))
+    fun pickCards(amount: Int) {
+        hand.addAll(deck.pickCards(amount))
     }
 
-    fun getStatus() = HumanStatus(health, mana, hand)
+    fun getStatus() = HumanStatus(health, mana, hand, deck.size())
 
     fun playCards(cardValues: List<Int>): Int {
         if(cardValues.any { it > 8 }) throw Error()

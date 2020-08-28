@@ -2,6 +2,5 @@ package com.kata.domain
 
 class GameStatus(
     val human: HumanStatus,
-    val machineStatus: MachineStatus,
-    val remainingCards: Int
+    val machineStatus: MachineStatus
 )

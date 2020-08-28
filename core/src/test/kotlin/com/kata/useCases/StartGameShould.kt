@@ -24,10 +24,11 @@ internal class StartGameShould {
 
         Assertions.assertThat(status.human.hand.size).isEqualTo(3)
     }
+
     @Test
     fun `decrease the human deck in 3 cards`() {
         val status = StartGame().execute()
 
-        Assertions.assertThat(status.remainingCards).isEqualTo(17)
+        Assertions.assertThat(status.human.remainingCards).isEqualTo(17)
     }
 }

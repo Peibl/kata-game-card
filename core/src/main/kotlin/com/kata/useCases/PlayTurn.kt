@@ -1,9 +1,9 @@
 package com.kata.useCases
 
-import com.kata.domain.Game
+import com.kata.domain.Games
 
-class PlayTurn(private val game: Game) {
+class PlayTurn(private val games: Games) {
     fun execute(cardValues: List<Int>) {
-        game.playHumanTurn(cardValues)
+        games.current?.playHumanTurn(cardValues)
     }
 }

@@ -5,7 +5,7 @@ import com.kata.domain.GameStatus
 
 class StartGame {
     fun execute(): GameStatus {
-        val game = Game()
+        val game = Game.new()
         game.start()
         return game.getStatus()
     }

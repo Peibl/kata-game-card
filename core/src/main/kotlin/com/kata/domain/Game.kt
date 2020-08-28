@@ -1,12 +1,8 @@
 package com.kata.domain
 
-class Game(humanMana: Int = 0) {
-    private val human = Human(humanMana)
-    private val machine = Machine()
-    private var deck = Deck()
-
+class Game(private val human: Human, private val machine: Machine) {
     fun start() {
-        human.pickCards(deck, 3)
+        human.pickCards(3)
     }
 
     fun playHumanTurn(cardValues: List<Int>) {
@@ -16,9 +12,18 @@ class Game(humanMana: Int = 0) {
     fun getStatus(): GameStatus {
         val humanStatus = human.getStatus()
         val machineStatus = machine.getStatus()
-        return GameStatus(humanStatus, machineStatus, deck.size())
+        return GameStatus(humanStatus, machineStatus)
+    }
+
+    companion object {
+        fun new(): Game {
+            val human = Human(0, 30, Deck())
+            val machine = Machine()
+            return Game(human, machine)
+        }
     }
 }
+
 
 
 
