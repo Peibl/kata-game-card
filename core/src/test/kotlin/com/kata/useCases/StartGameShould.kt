@@ -1,27 +1,16 @@
 package com.kata.useCases
 
+import com.kata.domain.CurrentGame
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
 
 internal class StartGameShould {
     @Test
     fun `return the health of the human player`() {
-        val status = StartGame().execute()
+        val currentGame = CurrentGame()
 
-        Assertions.assertThat(status.human.health).isEqualTo(30)
-    }
+        StartGame(currentGame).execute()
 
-    @Test
-    fun `return the mana of the human player`() {
-        val status = StartGame().execute()
-
-        Assertions.assertThat(status.human.mana).isEqualTo(0)
-    }
-
-    @Test
-    fun `decrease the human deck in 3 cards`() {
-        val status = StartGame().execute()
-
-        Assertions.assertThat(status.human.remainingCards).isEqualTo(17)
+        Assertions.assertThat(currentGame.current).isNotNull()
     }
 }

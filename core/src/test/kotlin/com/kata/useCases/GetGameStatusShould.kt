@@ -73,7 +73,7 @@ internal class GetGameStatusShould {
         currentGame.current = null
     }
 
-    private val currentGame = Games()
+    private val currentGame = CurrentGame()
     private val AMOUNT_TO_PICK = 8
     private val INITIAL_CARD_AMOUNT = Deck().size()
 }

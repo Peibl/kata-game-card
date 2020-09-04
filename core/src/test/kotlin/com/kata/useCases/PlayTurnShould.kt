@@ -8,7 +8,7 @@ import org.junit.jupiter.api.assertThrows
 internal class PlayTurnShould {
     @Test
     fun `decrease machine health in 5 when human card played is five`() {
-        val games = Games(game(6))
+        val games = CurrentGame(game(6))
         PlayTurn(games).execute(listOf(5))
 
         Assertions.assertThat(games.current!!.getStatus().machineStatus.health).isEqualTo(25)
@@ -16,7 +16,7 @@ internal class PlayTurnShould {
 
     @Test
     fun `decrease machine health in 5 when human card played are two and three`() {
-        val games = Games(game(6))
+        val games = CurrentGame(game(6))
         PlayTurn(games).execute(listOf(2, 3))
 
         Assertions.assertThat(games.current!!.getStatus().machineStatus.health).isEqualTo(25)
@@ -24,14 +24,14 @@ internal class PlayTurnShould {
 
     @Test
     fun `can't play without enough mana`() {
-        val games = Games(game(1))
+        val games = CurrentGame(game(1))
 
         assertThrows<Error> { PlayTurn(games).execute(listOf(5) )}
     }
 
     @Test
     fun `can't play a card with value higher than 8`() {
-        val games = Games(game(100000))
+        val games = CurrentGame(game(100000))
         assertThrows<Error> { PlayTurn(games).execute(listOf(555) )}
     }
 
