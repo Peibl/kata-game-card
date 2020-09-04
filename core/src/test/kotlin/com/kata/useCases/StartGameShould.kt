@@ -19,13 +19,6 @@ internal class StartGameShould {
     }
 
     @Test
-    fun `return the initial hand of the human player`() {
-        val status = StartGame().execute()
-
-        Assertions.assertThat(status.human.hand.size).isEqualTo(3)
-    }
-
-    @Test
     fun `decrease the human deck in 3 cards`() {
         val status = StartGame().execute()
 

@@ -39,17 +39,33 @@ internal class GetGameStatusShould {
 
     @Test
     fun `return the hand of the human player`() {
-        val deck = Deck()
-        currentGame.current = aGameWith(deck = deck)
+        currentGame.current = aGameWith(hand = Hand(mutableListOf(0, 0, 1)))
 
         val status = GetGameStatus(currentGame).execute()
 
-        Assertions.assertThat(status.human.hand).isEqualTo(mutableListOf(0, 0, 1))
+        Assertions.assertThat(status.human.hand).isEqualTo(Hand(mutableListOf(0, 0, 1)))
     }
 
-    private fun aGameWith(humanMana: Int = 0, humanHealth: Int = 30, deck: Deck = Deck()): Game {
-        val human = Human(humanMana, humanHealth, deck)
-        return Game(human, Machine())
+    @Test
+    fun `return the health of the Machine player`() {
+        val machineHealth = 20
+        currentGame.current = aGameWith(machineHealth = machineHealth)
+
+        val status = GetGameStatus(currentGame).execute()
+
+        Assertions.assertThat(status.machineStatus.health).isEqualTo(machineHealth)
+    }
+
+    private fun aGameWith(
+        humanMana: Int = 0,
+        humanHealth: Int = 30,
+        deck: Deck = Deck(),
+        hand: Hand = Hand(),
+        machineHealth: Int = 30
+    ): Game {
+        val human = Human(humanMana, humanHealth, deck, hand)
+        val machine = Machine(machineHealth)
+        return Game(human, machine)
     }
 
     @BeforeEach

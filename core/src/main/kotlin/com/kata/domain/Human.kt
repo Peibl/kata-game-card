@@ -1,7 +1,6 @@
 package com.kata.domain
 
-class Human(val mana: Int, val health: Int, private val deck: Deck) {
-    private var hand = mutableListOf<Int>()
+class Human(val mana: Int, val health: Int, private val deck: Deck, val hand: Hand) {
 
     fun pickCards(amount: Int) {
         hand.addAll(deck.pickCards(amount))

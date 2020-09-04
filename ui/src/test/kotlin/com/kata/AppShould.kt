@@ -1,6 +1,7 @@
 package com.kata
 
 import com.kata.domain.GameStatus
+import com.kata.domain.Hand
 import com.kata.domain.HumanStatus
 import com.kata.domain.MachineStatus
 import com.kata.ui.Screen
@@ -57,8 +58,8 @@ class AppShould {
 
     @Test
     fun `show the initial hand after create a game`() {
-        val cards = listOf(5, 3, 2)
-        every { startGame.execute() } returns statusWith(cards = cards)
+        val cards = mutableListOf(5, 3, 2)
+        every { startGame.execute() } returns statusWith(hand = Hand(cards))
 
         App(screen, keyboard, startGame).run()
 
@@ -70,10 +71,10 @@ class AppShould {
     private fun statusWith(
         initialHealth: Int = 30,
         initialMana: Int = 0,
-        cards: List<Int> = listOf(1, 1, 1),
+        hand: Hand = Hand(mutableListOf(1, 1, 1)),
         remainingCards: Int = 0
     ): GameStatus {
-        val humanStatus = HumanStatus(initialHealth, initialMana, cards, remainingCards)
+        val humanStatus = HumanStatus(initialHealth, initialMana, hand, remainingCards)
         val machineStatus = MachineStatus(initialHealth)
         return GameStatus(humanStatus, machineStatus)
     }

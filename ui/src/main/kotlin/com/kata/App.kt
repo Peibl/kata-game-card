@@ -10,8 +10,8 @@ class App(private val screen: Screen, private val keyboard: Keyboard, private va
         val status = startGame.execute()
         screen.printLine("Health: ${status.human.health}")
         screen.printLine("Mana: ${status.human.mana}")
-        screen.printLine("Card 1: ${status.human.hand[0]}")
-        screen.printLine("Card 2: ${status.human.hand[1]}")
-        screen.printLine("Card 3: ${status.human.hand[2]}")
+        screen.printLine("Card 1: ${status.human.hand.cards[0]}")
+        screen.printLine("Card 2: ${status.human.hand.cards[1]}")
+        screen.printLine("Card 3: ${status.human.hand.cards[2]}")
     }
 }

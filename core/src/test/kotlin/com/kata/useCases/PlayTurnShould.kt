@@ -35,5 +35,5 @@ internal class PlayTurnShould {
         assertThrows<Error> { PlayTurn(games).execute(listOf(555) )}
     }
 
-    private fun game(mana: Int) = Game(Human(mana, 30, Deck()), Machine())
+    private fun game(mana: Int) = Game(Human(mana, 30, Deck(), Hand()), Machine(30))
 }

@@ -1,8 +1,6 @@
 package com.kata.domain
 
-class Machine {
-    var health = 30
-
+class Machine(var health: Int) {
     fun reduceHealth(damage: Int) {
         health -= damage
     }

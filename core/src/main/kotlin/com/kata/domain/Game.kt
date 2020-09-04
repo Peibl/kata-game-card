@@ -17,8 +17,8 @@ class Game(private val human: Human, private val machine: Machine) {
 
     companion object {
         fun new(): Game {
-            val human = Human(0, 30, Deck())
-            val machine = Machine()
+            val human = Human(0, 30, Deck(), Hand())
+            val machine = Machine(30)
             return Game(human, machine)
         }
     }
