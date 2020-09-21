@@ -63,7 +63,7 @@ internal class GetGameStatusShould {
         hand: Hand = Hand(),
         machineHealth: Int = 30
     ): Game {
-        val human = Human(humanMana, humanHealth, deck, hand)
+        val human = Player(humanMana, humanHealth, deck, hand)
         val machine = Machine(machineHealth)
         return Game(human, machine)
     }

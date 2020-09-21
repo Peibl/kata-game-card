@@ -1,6 +1,6 @@
 package com.kata.domain
 
-class Human(val mana: Int, val health: Int, private val deck: Deck, val hand: Hand) {
+class Player(private val mana: Int, private val health: Int, private val deck: Deck, private val hand: Hand) {
 
     fun pickCards(amount: Int) {
         hand.addAll(deck.pickCards(amount))
